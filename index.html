@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilruba | Authentic Punjabi Cuisine – Rugby</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c2c2c;
+            background: #fffdf5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
+                        url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1200&h=700&fit=crop') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 70px 20px 50px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            color: #f0d78c;
+        }
+
+        .hero .rating {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .hero .rating span {
+            color: #FFD700;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #c0392b;
+            color: white;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background: #a93226;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: #c0392b;
+        }
+
+        /* Info bar (prominent hours/location) */
+        .info-bar {
+            background: #7b241c;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .info-bar span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-bar i {
+            font-size: 1.2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #7b241c;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: #d4af37;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about {
+            background: white;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* Menu category navigation */
+        .menu-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+        .menu-nav a {
+            background: #fdf8f0;
+            color: #7b241c;
+            padding: 8px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #d4af37;
+            transition: 0.2s;
+        }
+        .menu-nav a:hover {
+            background: #d4af37;
+            color: #fff;
+        }
+
+        /* Menu */
+        .menu {
+            background: #fdf8f0;
+        }
+        .menu-category {
+            margin-bottom: 40px;
+        }
+        .menu-category h3 {
+            font-size: 1.8rem;
+            color: #7b241c;
+            border-bottom: 2px solid #d4af37;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .menu-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+        }
+        .menu-item:hover {
+            transform: translateY(-3px);
+        }
+        .menu-item .item-info {
+            flex: 1;
+        }
+        .menu-item .item-name {
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+        .menu-item .item-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 4px;
+        }
+        .menu-item .item-price {
+            font-weight: bold;
+            color: #c0392b;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+        .popular-badge {
+            background: #d4af37;
+            color: #7b241c;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .diet-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+        .diet-vegan {
+            background: #2e7d32;
+            color: white;
+        }
+        .diet-vegetarian {
+            background: #8bc34a;
+            color: #1b5e20;
+        }
+
+        /* Gallery */
+        .gallery {
+            background: white;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Reviews */
+        .reviews {
+            background: #fdf8f0;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .review-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #d4af37;
+        }
+        .review-stars {
+            color: #FFD700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .review-text {
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .review-author {
+            font-weight: bold;
+            color: #7b241c;
+        }
+        .review-meta {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Contact */
+        .contact {
+            background: white;
+        }
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .contact-info {
+            flex: 1 1 280px;
+            font-size: 1.1rem;
+        }
+        .contact-info p {
+            margin-bottom: 12px;
+        }
+        .map-container {
+            flex: 1 1 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            background: #7b241c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            z-index: 99;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        #backToTop:hover {
+            background: #c0392b;
+        }
+
+        /* Sticky mobile bar */
+        .mobile-action-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #7b241c;
+            z-index: 100;
+            justify-content: space-around;
+            padding: 10px 10px;
+        }
+        .mobile-action-bar a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: #c0392b;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+        .mobile-action-bar a:first-child {
+            background: #2c2c2c;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #aaa;
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.9rem;
+        }
+        footer .social-icons {
+            margin: 15px 0;
+        }
+        footer .social-icons a {
+            color: #aaa;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        footer .social-icons a:hover {
+            color: #d4af37;
+        }
+
+        /* Print styles */
+        @media print {
+            .hero, .info-bar, .menu-nav, .reviews, .contact, .gallery, .mobile-action-bar, #backToTop, footer, .btn {
+                display: none;
+            }
+            .menu {
+                background: white;
+                padding: 0;
+            }
+            .menu-item {
+                box-shadow: none;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            .mobile-action-bar {
+                display: flex;
+            }
+            body {
+                margin-bottom: 70px;
+            }
+            #backToTop {
+                bottom: 85px;
+                right: 15px;
+            }
+            .info-bar {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="container">
+            <h1>Dilruba</h1>
+            <p class="tagline">Authentic Punjabi Cuisine</p>
+            <div class="rating">
+                <span>★ ★ ★ ★ ★</span> 4.8 — 162 reviews
+            </div>
+            <div class="hero-buttons">
+                <a href="tel:+4401788877293" class="btn">📞 Call Us</a>
+                <a href="https://www.ubereats.com/gb/store/dilruba-rugby/Hcyn81JuSByOiEvJot_OZA" target="_blank" class="btn btn-outline">🛵 Order Uber Eats</a>
+                <a href="tel:+4401788877293" class="btn">🍽️ Book a Table</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Prominent Info Bar -->
+    <div class="info-bar">
+        <span>📍 155 Railway Terrace, Rugby CV21 3HQ</span>
+        <span>🕒 Open 7 Days · 2:30 PM – 10:00 PM</span>
+        <span>📞 <a href="tel:+4401788877293" style="color:white; text-decoration:none;">01788 877293</a></span>
+    </div>
+
+    <!-- About -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">A Hidden Gem in Rugby</h2>
+            <div class="about-content">
+                <p>Welcome to Dilruba, a beloved local restaurant serving the heart of Amritsar right here in Rugby.
+                Every dish is cooked fresh daily – <strong>nothing frozen, nothing microwaved</strong>.
+                From smoky tandoori chicken to rich butter curries and fluffy naan, we bring you the true taste of Punjab with warm, personal service.</p>
+                <p style="margin-top:15px;">Vegetarian? No problem – we have a <strong>large vegetarian selection</strong> clearly marked on our menu.
+                Dine in, take away, or order via Uber Eats. We promise a meal you won’t forget.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">A Taste of Dilruba</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop" alt="Tandoori chicken">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&h=300&fit=crop" alt="Biryani">
+                <img src="https://images.unsplash.com/photo-1606491956689-68ea650c58a5?w=400&h=300&fit=crop" alt="Fresh naan bread">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=300&fit=crop" alt="Indian curry">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop" alt="Samosa and chutney">
+                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=300&fit=crop" alt="Indian dessert">
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu with Category Navigation -->
+    <section class="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-nav">
+                <a href="#starters">Starters</a>
+                <a href="#nonveg">Non-Veg Mains</a>
+                <a href="#seafood">Seafood</a>
+                <a href="#lamb">Lamb</a>
+                <a href="#chicken">Chicken</a>
+                <a href="#chilli">Chilli</a>
+                <a href="#wraps">Wraps</a>
+                <a href="#breads">Breads</a>
+                <a href="#rice">Rice</a>
+                <a href="#veg">Veg Mains</a>
+                <a href="#kids">Kids</a>
+                <a href="#drinks">Drinks</a>
+                <a href="#deals">Deals</a>
+            </div>
+
+            <!-- Starters -->
+            <div class="menu-category" id="starters">
+                <h3>Starters</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Papadoms</span><span class="popular-badge">Popular</span></div><span class="item-price">£0.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Onion Bhaji</span><span class="popular-badge">Popular</span><p class="item-desc">Finely sliced onion, fragrantly battered and fried crispy perfection</p></div><span class="item-price">£3.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Masala Chips</span><p class="item-desc">Potato chips with spices</p></div><span class="item-price">£2.45</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chips</span><p class="item-desc">Plain potato chips</p></div><span class="item-price">£1.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chips with Cheese</span><p class="item-desc">Thin cut fries with melted cheese on top</p></div><span class="item-price">£3.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Veg Samosa</span><span class="diet-badge diet-vegetarian">Veg</span><p class="item-desc">2 pieces, potato and peas inside, finely fried</p></div><span class="item-price">£4.20</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Meat Samosa</span><span class="popular-badge">Popular</span><p class="item-desc">2 pieces, lamb inside, crispy texture</p></div><span class="item-price">£4.20</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Soya Tikka Masala</span><span class="diet-badge diet-vegan">Vegan</span><p class="item-desc">Soya chunks cooked in tandoor, served with gravy</p></div><span class="item-price">£9.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Soya Tandoori Tikka</span><span class="diet-badge diet-vegan">Vegan</span><p class="item-desc">Plain soya chunks cooked in tandoor</p></div><span class="item-price">£7.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Paneer Tikka</span><span class="diet-badge diet-vegetarian">Veg</span><p class="item-desc">Paneer marinated in yogurt and spices, cooked in tandoor</p></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Veg Steamed Momos</span><p class="item-desc">Steamed dumplings stuffed with mixed vegetables</p></div><span class="item-price">£5.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Fried Veg Momos</span><p class="item-desc">Golden-fried dumplings with savoury vegetable filling</p></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Momos</span><p class="item-desc">Savoury dumplings filled with minced chicken</p></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Fried Chicken Momos</span><p class="item-desc">Crispy fried dumplings with chicken filling</p></div><span class="item-price">£7.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Meat Keema Momos</span><p class="item-desc">Dumplings stuffed with minced meat</p></div><span class="item-price">£7.99</span></div>
+                </div>
+            </div>
+
+            <!-- Non-Veg Main Dishes -->
+            <div class="menu-category" id="nonveg">
+                <h3>Non-Veg Main Dishes</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Curry</span><span class="popular-badge">Popular</span><p class="item-desc">Nicely cooked lamb in gravy, medium/hot/extra hot</p></div><span class="item-price">£10.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Curry</span><span class="popular-badge">Popular</span><p class="item-desc">Chicken in gravy, medium/hot/extra hot</p></div><span class="item-price">£9.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Korma</span><p class="item-desc">Braised in yogurt/cream/milk with nuts</p></div><span class="item-price">£9.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Dansek</span><p class="item-desc">Daal with chicken</p></div><span class="item-price">£10.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Saag</span><p class="item-desc">Mustard/spinach curry with chicken</p></div><span class="item-price">£9.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Saag</span><p class="item-desc">Tender lamb in rich spinach curry</p></div><span class="item-price">£10.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Tikka Masala</span><p class="item-desc">Chicken tikka in gravy</p></div><span class="item-price">£9.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Korma</span><p class="item-desc">Tender lamb in rich creamy sauce</p></div><span class="item-price">£11.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Butter Chicken</span><span class="popular-badge">Popular</span><p class="item-desc">Chicken in tomato & butter sauce</p></div><span class="item-price">£10.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Keema Mutter</span><p class="item-desc">Minced lamb and peas</p></div><span class="item-price">£10.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Prawn Karahi</span><p class="item-desc">Shrimps in gravy</p></div><span class="item-price">£14.50</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Karahi on The Bone</span><p class="item-desc">Rich tomato, garlic, green chilli, garam masala base</p></div><span class="item-price">£13.20</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Karahi Boneless</span><p class="item-desc">Tender lamb in aromatic sauce</p></div><span class="item-price">£14.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Karahi</span><p class="item-desc">Tomato, garlic, green chilli, garam masala base chicken</p></div><span class="item-price">£11.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken with Cheese</span><p class="item-desc">Tender chicken with melted cheese</p></div><span class="item-price">£10.85</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb with Cheese</span><p class="item-desc">Tender lamb with melted cheese</p></div><span class="item-price">£10.99</span></div>
+                </div>
+            </div>
+
+            <!-- Seafood Starters -->
+            <div class="menu-category" id="seafood">
+                <h3>Seafood Starters</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Tandoori King Prawn</span><p class="item-desc">3 pieces, marinated in yogurt and spices</p></div><span class="item-price">£10.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Salmon Tikka</span><p class="item-desc">3 pieces, marinated in yogurt, garlic, ginger</p></div><span class="item-price">£13.20</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Fish Tikka</span><span class="popular-badge">Popular</span><p class="item-desc">5 pieces panga fish, yogurt, ginger & garlic</p></div><span class="item-price">£7.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Ambersari Pakoda</span><p class="item-desc">Fried panga fish in batter with spices</p></div><span class="item-price">£7.99</span></div>
+                </div>
+            </div>
+
+            <!-- Lamb Dishes -->
+            <div class="menu-category" id="lamb">
+                <h3>Lamb Dishes</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Tandoori Chops</span><p class="item-desc">Infused with lemon, yogurt, ginger, garlic, spices</p></div><span class="item-price">£12.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Sheesh Kabab</span><p class="item-desc">Finely minced lamb with spices</p></div><span class="item-price">£6.99</span></div>
+                </div>
+            </div>
+
+            <!-- Chicken Dishes -->
+            <div class="menu-category" id="chicken">
+                <h3>Chicken Dishes</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Pakoda</span><span class="popular-badge">Popular</span><p class="item-desc">Fried chicken pieces in batter with spices</p></div><span class="item-price">£7.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Malai Tikka</span><p class="item-desc">6 pieces, marinated and slow-cooked in tandoor</p></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Tikka</span><p class="item-desc">4 pieces, marinated in yogurt and spices</p></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Wings</span><p class="item-desc">6 pieces, marinated in yogurt and cooked in tandoor</p></div><span class="item-price">£6.00</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Tandoori (Half)</span></div><span class="item-price">£8.20</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Tandoori (Whole)</span></div><span class="item-price">£15.00</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Tandoori (Quarter)</span></div><span class="item-price">£5.00</span></div>
+                </div>
+            </div>
+
+            <!-- Chilli Dishes -->
+            <div class="menu-category" id="chilli">
+                <h3>Chilli Dishes</h3>
+                <p style="margin-bottom:15px; color:#666;">Battered fried item, cooked in sweet chilli with capsicum and onion.</p>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chilli Chicken</span><span class="popular-badge">Popular</span></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chilli Mushroom</span></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chilli Paneer</span></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Manchurian</span><p class="item-desc">Mix of cauliflower, paneer, potato fried in batter with sweet chilli, capsicum & onion</p></div><span class="item-price">£6.99</span></div>
+                </div>
+            </div>
+
+            <!-- Wraps -->
+            <div class="menu-category" id="wraps">
+                <h3>Wraps</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chilli Tikka Wrap</span></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chilli Paneer Wrap</span></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chilli Chicken Wrap</span></div><span class="item-price">£6.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Sheesh Kebab Wrap</span></div><span class="item-price">£6.99</span></div>
+                </div>
+            </div>
+
+            <!-- Breads -->
+            <div class="menu-category" id="breads">
+                <h3>Breads</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Tandoori Naan</span><span class="popular-badge">Popular</span></div><span class="item-price">£1.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Tandoori Roti</span><span class="popular-badge">Popular</span></div><span class="item-price">£1.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Peshawari Naan</span><span class="popular-badge">Popular</span></div><span class="item-price">£3.85</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lamb Keema Naan</span><p class="item-desc">Tender lamb mince in naan</p></div><span class="item-price">£3.85</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Garlic Naan</span><span class="popular-badge">Popular</span></div><span class="item-price">£2.50</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Cheese Naan</span></div><span class="item-price">£3.85</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Aloo Paratha</span><span class="popular-badge">Popular</span><p class="item-desc">Flaky flatbread stuffed with spiced potatoes</p></div><span class="item-price">£4.20</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Butter Naan</span></div><span class="item-price">£3.85</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Lacha Paratha</span><p class="item-desc">Thin, layered flatbread</p></div><span class="item-price">£3.85</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chilli Naan</span></div><span class="item-price">£2.85</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chilli Cheese Naan</span></div><span class="item-price">£4.20</span></div>
+                </div>
+            </div>
+
+            <!-- Rice -->
+            <div class="menu-category" id="rice">
+                <h3>Rice</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Pilau Rice</span><span class="popular-badge">Popular</span><p class="item-desc">Aromatic basmati rice with mild spices</p></div><span class="item-price">£4.20</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Plain Rice</span><span class="popular-badge">Popular</span></div><span class="item-price">£2.45</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Dum Biryani</span><p class="item-desc">Basmati rice cooked with chicken and spices</p></div><span class="item-price">£10.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Fried Rice</span><span class="popular-badge">Popular</span></div><span class="item-price">£6.40</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Egg Fried Rice</span><span class="popular-badge">Popular</span></div><span class="item-price">£3.85</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Veg Biryani</span><span class="popular-badge">Popular</span></div><span class="item-price">£9.99</span></div>
+                </div>
+            </div>
+
+            <!-- Veg Main Dishes -->
+            <div class="menu-category" id="veg">
+                <h3>Veg Main Dishes</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chana Masala</span><span class="diet-badge diet-vegan">Vegan</span><span class="popular-badge">Popular</span></div><span class="item-price">£8.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Mix Vegetables</span><span class="diet-badge diet-vegetarian">Veg</span><p class="item-desc">Peas, cauliflower, potato, carrot in tomato, ginger, garlic</p></div><span class="item-price">£8.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Channa Daal</span><span class="diet-badge diet-vegetarian">Veg</span><p class="item-desc">Pulses from desi chickpea, cooked with tomato, ginger, garlic</p></div><span class="item-price">£8.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Daal Makhani</span><span class="diet-badge diet-vegetarian">Veg</span><span class="popular-badge">Popular</span><p class="item-desc">Black lentils & kidney beans slow-cooked with spices, butter & cream</p></div><span class="item-price">£8.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Kadai Paneer</span><span class="diet-badge diet-vegetarian">Veg</span><p class="item-desc">Paneer & bell peppers in fresh ground spice powder</p></div><span class="item-price">£8.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Palak Paneer</span><span class="diet-badge diet-vegetarian">Veg</span><p class="item-desc">Paneer and spinach cooked with ground spices</p></div><span class="item-price">£8.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Mutter Paneer</span><span class="diet-badge diet-vegetarian">Veg</span><span class="popular-badge">Popular</span><p class="item-desc">Paneer and peas in spicy, flavoursome curry</p></div><span class="item-price">£8.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Tarka Daal</span><span class="diet-badge diet-vegetarian">Veg</span><p class="item-desc">Pulses with toasted spices, fried onions, garlic</p></div><span class="item-price">£8.99</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Butter Paneer</span><span class="diet-badge diet-vegetarian">Veg</span><span class="popular-badge">Popular</span><p class="item-desc">Rich and creamy paneer in buttery sauce</p></div><span class="item-price">£8.99</span></div>
+                </div>
+            </div>
+
+            <!-- Kids Menu -->
+            <div class="menu-category" id="kids">
+                <h3>Kids Menu</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Chicken Nuggets</span><p class="item-desc">6 pieces, served with sauce</p></div><span class="item-price">£4.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Fish Finger</span><p class="item-desc">Served with sauce</p></div><span class="item-price">£4.95</span></div>
+                </div>
+            </div>
+
+            <!-- Soft Drinks & Hard Drinks combined -->
+            <div class="menu-category" id="drinks">
+                <h3>Soft Drinks</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Coke</span></div><span class="item-price">£1.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Diet Coke</span></div><span class="item-price">£1.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Fanta</span></div><span class="item-price">£1.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Pepsi Max</span></div><span class="item-price">£1.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">7Up</span></div><span class="item-price">£1.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Water</span></div><span class="item-price">£1.95</span></div>
+                </div>
+                <h3 style="margin-top: 30px;">Hard Drinks</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Cobra (660ml)</span></div><span class="item-price">£5.00</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Peroni (660ml)</span></div><span class="item-price">£5.00</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Staropramen (660ml)</span></div><span class="item-price">£5.00</span></div>
+                </div>
+            </div>
+
+            <!-- Starter Deals -->
+            <div class="menu-category" id="deals">
+                <h3>Starter Deals</h3>
+                <div class="menu-items">
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Meat Platter for 2</span><p class="item-desc">2 lamb chops, 2 chicken wings, 1 lamb sheesh kabab, 2 chicken boti</p></div><span class="item-price">£12.95</span></div>
+                    <div class="menu-item"><div class="item-info"><span class="item-name">Meat Platter for 4</span><p class="item-desc">4 chicken wings, 2 lamb sheesh kabab, 4 chicken boti, 4 lamb chops</p></div><span class="item-price">£22.95</span></div>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top: 30px;">
+                <button onclick="window.print()" class="btn">🖨️ Print Menu</button>
+                <p style="color:#777; margin-top: 10px;">PDF download coming soon</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews">
+        <div class="container">
+            <h2 class="section-title">What Our Guests Say</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Really fresh and tasty food. Onion Bhaji and Fish Pakora were amazing. Lamb and chicken curries tender, biryani with pastry top – highly recommend!"</p>
+                    <p class="review-author">Jodo</p>
+                    <p class="review-meta">Dine in · 6 months ago</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Their tandoori chicken is to die for – juicy, flavorful, and the spices are just right. I've been back multiple times just for this dish!"</p>
+                    <p class="review-author">Shravan M N</p>
+                    <p class="review-meta">Dine in · 8 months ago</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Everything was delicious. The waitress helped me a lot with the choice. Not a big Indian food fan, but I totally recommend."</p>
+                    <p class="review-author">Maria Mihaltan</p>
+                    <p class="review-meta">Local Guide · 6 months ago</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Top class curry. Flavoured and seasoned really well, chilli paneer spot on. One of the best curries I’ve had in a while! 11/10."</p>
+                    <p class="review-author">Greg Barros</p>
+                    <p class="review-meta">Dine in · 4 months ago</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Hidden gem! My partner and I had a lovely dinner. The service is welcoming and the food authentic. We're from London but this is now our Rugby go-to."</p>
+                    <p class="review-author">Max Leo Rodeck</p>
+                    <p class="review-meta">Local Guide · 3 months ago</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Nothing is frozen, everything cooked fresh by the lovely husband and wife owners. Highly recommend the Amritsari Kulcha. Warm and hospitable service."</p>
+                    <p class="review-author">Rosie Notley</p>
+                    <p class="review-meta">Dine in · 3 months ago</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Found this restaurant by chance and I’m so glad we did! Excellent Indian food from start to finish. Very reasonable price and great service."</p>
+                    <p class="review-author">Lianne Moody</p>
+                    <p class="review-meta">Dine in · 3 months ago</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"This is the best Indian restaurant in Rugby, the food is very authentic and tasty. A must visit when going to Rugby."</p>
+                    <p class="review-author">Vania Goque</p>
+                    <p class="review-meta">Dine in · 7 months ago</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <p><strong>📍 Address:</strong><br>155 Railway Terrace, Rugby CV21 3HQ</p>
+                    <p><strong>📞 Phone:</strong><br><a href="tel:+4401788877293">+44 01788 877293</a></p>
+                    <p><strong>🕒 Opening Hours:</strong><br>Monday – Sunday: 2:30 PM – 10:00 PM<br><em>(Open 7 days a week)</em></p>
+                    <p><strong>🛵 Delivery:</strong><br>Available on <strong>Uber Eats</strong></p>
+                    <a href="https://www.ubereats.com/gb/store/dilruba-rugby/Hcyn81JuSByOiEvJot_OZA" target="_blank" class="btn">Order Takeaway on Uber Eats</a>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=155+Railway+Terrace,+Rugby+CV21+3HQ&output=embed" 
+                        width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Back to top">↑</button>
+
+    <!-- Sticky Mobile Action Bar -->
+    <div class="mobile-action-bar">
+        <a href="tel:+4401788877293">📞 Call</a>
+        <a href="https://www.ubereats.com/gb/store/dilruba-rugby/Hcyn81JuSByOiEvJot_OZA" target="_blank">🛵 Uber Eats</a>
+    </div>
+
+    <!-- Footer with social icons -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Dilruba – Authentic Punjabi Cuisine, Rugby. All rights reserved.</p>
+            <div class="social-icons">
+                <!-- Placeholder social links – replace with real URLs when available -->
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="TripAdvisor">⭐</a>
+            </div>
+            <p style="margin-top:10px;">155 Railway Terrace, Rugby CV21 3HQ | +44 01788 877293</p>
+        </div>
+    </footer>
+
+    <script>
+        // Back to Top button visibility
+        window.addEventListener('scroll', function() {
+            var backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 500) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
